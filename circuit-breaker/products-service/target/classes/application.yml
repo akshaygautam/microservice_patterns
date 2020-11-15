@@ -1,0 +1,16 @@
+rating:
+  service:
+    url: http://localhost:8081/v1/ratings
+    
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowType: COUNT_BASED
+      slidingWindowSize: 100
+      permittedNumberOfCallsInHalfOpenState: 10
+      waitDurationInOpenState: 10
+      failureRateThreshold: 60
+      registerHealthIndicator: true
+  instances:
+    ratingService:
+      baseConfig: default
